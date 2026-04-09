@@ -54,23 +54,19 @@ class Solution:
         # 始终确保 nums1 是长度较短的那个数组，以优化性能并防止数组越界
         if len(nums1) > len(nums2):
             nums1, nums2 = nums2, nums1
-            
         m, n = len(nums1), len(nums2)
         # 初始化在较短数组 nums1 中寻找分割线的二分查找区间 [0, m]
         csu1, csu2 = 0, m
-        
         # 开始二分查找分割线
         while csu1 <= csu2:
             # i 是 nums1 的分割线位置；j 是 nums2 的分割线位置
             i = (csu1 + csu2) // 2
             j = (m + n + 1) // 2 - i
-
             # 获取分割线两侧的四个临界值（处理边界越界情况，用无穷大/无穷小代替）
             left1 = nums1[i - 1] if i > 0 else float('-inf')
             right1 = nums1[i] if i < m else float('inf')
             left2 = nums2[j - 1] if j > 0 else float('-inf')
             right2 = nums2[j] if j < n else float('inf')
-
             # 检查是否找到了完美的分割线（交叉小于等于）
             if left1 <= right2 and left2 <= right1:
                 # 若总长度为奇数，中位数就是全局左半部分的最大值
@@ -78,11 +74,9 @@ class Solution:
                     return max(left1, left2)
                 # 若总长度为偶数，中位数是左半部分最大值与右半部分最小值的平均数
                 return (max(left1, left2) + min(right1, right2)) / 2
-                
             # 场景一：nums1 左侧最大值太大，说明分割线 i 靠右了，需要向左缩小区间的右边界
             elif left1 > right2:
                 csu2 = i - 1  # 修正了原代码的 cus2 拼写错误
-                
             # 场景二：nums2 左侧最大值太大（即 nums1 右侧最小值太小），说明 i 靠左了，向右缩小左边界
             else:
                 csu1 = i + 1
