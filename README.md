@@ -108,7 +108,7 @@ class Solution:
                 return (max(left1, left2) + min(right1, right2)) / 2
             # 场景一：nums1 左侧最大值太大，说明分割线 i 靠右了，需要向左缩小区间的右边界
             elif left1 > right2:
-                csu2 = i - 1  # 修正了原代码的 cus2 拼写错误
+                csu2 = i - 1  
             # 场景二：nums2 左侧最大值太大（即 nums1 右侧最小值太小），说明 i 靠左了，向右缩小左边界
             else:
                 csu1 = i + 1
