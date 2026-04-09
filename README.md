@@ -93,7 +93,7 @@ class Solution:
         while csu1 <= csu2:
             # i 是 nums1 的分割线位置；j 是 nums2 的分割线位置
             i = (csu1 + csu2) // 2
-            j = (m + n + 1) // 2 - i
+            j = (m + n + 1) // 2 - i # `(m + n + 1) // 2`是总数，减去 i 就是nums2的分割数量了
             # 获取分割线两侧的四个临界值（处理边界越界情况，用无穷大/无穷小代替）
             left1 = nums1[i - 1] if i > 0 else float('-inf')
             right1 = nums1[i] if i < m else float('inf')
